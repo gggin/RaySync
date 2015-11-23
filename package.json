@@ -1,0 +1,26 @@
+{
+  "name": "ray-sync",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gggin/RaySync.git"
+  },
+  "keywords": [
+    "crypt",
+    "sync"
+  ],
+  "author": "GGGin, Ray",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gggin/RaySync/issues"
+  },
+  "homepage": "https://github.com/gggin/RaySync#readme",
+  "devDependencies": {
+    "fs-extra": "^0.26.2"
+  }
+}
