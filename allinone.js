@@ -3,8 +3,8 @@ var fsEx = require('fs-extra');
 
 function is_txtFile(dirname){
    
-　　var reg = /[.]/;   
-　　var res = dirname.split(reg);
+    var reg = /[.]/;   
+    var res = dirname.split(reg);
     if(res[1] == 'txt')   
         return true;
 }
