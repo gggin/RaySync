@@ -1,6 +1,6 @@
 var fs = require("fs");
 var fsEx = require('fs-extra');
-//暂时只支持同一个目录下的文件夹拷贝
+//暂时只支持同一个目录下的文件夹拷贝 dir1是已经存在的文件夹（已创建） dir2是任意同级目录的文件夹名字（未创建）
 var dir1 = "C:/Users/admin/RaySync/ceshi";
 var dir2 = "C:/Users/admin/RaySync/trytry";
 function is_txtFile(dirname)
