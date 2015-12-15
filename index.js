@@ -23,10 +23,10 @@ function cmpFile(file1, file2)
     var file2_md5 = crypto.createHash('md5');
 	
 	file1_md5.update(file1_content);
-	file2_md5.update(file2_content);
+    file2_md5.update(file2_content);
 
-	var f1_md5 = file1_md5.digest('hex');
-	var f2_md5 = file2_md5.digest('hex');
+    var f1_md5 = file1_md5.digest('hex');
+    var f2_md5 = file2_md5.digest('hex');
 
 	var file1_sha256 = crypto.createHash('sha256');
     var file2_sha256 = crypto.createHash('sha256');
@@ -48,6 +48,7 @@ function cmpFile(file1, file2)
 	}
 }
 
+/*
 function DoReCopy(Srcname, Desname) 
 {
     var xx = fs.readdirSync(Srcname);
@@ -59,9 +60,9 @@ function DoReCopy(Srcname, Desname)
         var fd = fs.openSync(file_name, "r");
         if (fs.fstatSync(fd).isDirectory()) 
         {
-            fs.close(fd);  /*
+            fs.close(fd);  
             console.log(Desname);
-            console.log(" is Directory");  */
+            console.log(" is Directory");  
             Srcname = Srcname +"/" + xx[key];
             Desname = Desname +"/" + xx[key];
    
@@ -82,6 +83,47 @@ function DoReCopy(Srcname, Desname)
     }
 }
 
+*/
+
+function cmpDir(dir1, dir2)
+{
+	var xx = fs.readdirSync(dir1);
+
+    for (var key in xx) 
+    {
+        var file_name = dir1 + "/" + xx[key];
+        var fd = fs.openSync(file_name, "r");
+        if (fs.fstatSync(fd).isDirectory()) 
+        {
+            fs.close(fd);  /*
+            console.log(Desname);
+            console.log(" is Directory");  */
+            dir1 = dir1 +"/" + xx[key];
+            dir2 = dir2 +"/" + xx[key];
+   
+           
+         
+            
+            cmpDir(dir1, dir2); 
+        } 
+        else if (fs.fstatSync(fd).isFile()) 
+        {
+            fs.close(fd);
+            if (is_txtFile(xx[key]))
+            {
+            	if (!cmpFile(file_name, dir2 + "/" + xx[key]))
+            	{
+            		fsEx.copySync(file_name, dir2 + "/" + xx[key]);
+
+            	}
+                
+            }
+         
+            console.log(dir2 + "/" + xx[key]);
+        }
+    }
+
+}
 
 
 DoReCopy(dir1, dir2);
