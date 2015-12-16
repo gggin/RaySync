@@ -27,26 +27,32 @@ x = vdisk.Client('sandbox')
 #print x.fileops_create_folder(access_token,"/Sun")
 
 # upload
-#print x.files_put(access_token,"/Ray/vdisk.py",open("./vdisk.py","rb"))
+#print x.files_put(access_token,"/Sun/vdisk_Oauth.py",open("./vdisk_Oauth.py","rb"))
 
 #print x.files(access_token,onlinefile)
 
 #print x.files(access_token,'/Ray')
 
-# 
-#print x.metadata(access_token,onlinefile)
+# print x.metadata(access_token,onlinefile)
+
+#delete
+#print x.fileops_delete(access_token,onlinefile)
+
+#create 
+#print x.fileops_create_folder(access_token,onlinefile)
 
 
 
 
 
 
+#list
 
-
-dict = x.files_list(access_token,onlinefile)
+dict = x.fileops_list(access_token,onlinefile)
 for (d,e) in dict.items():
      print "key:" + d 
 
+
 #download
-#x.file_download(access_token, localfile, onlinefile)
+#x.fileops_download(access_token, localfile, onlinefile)
 #print x.fileops_create_folder(access_token,"/Ray")

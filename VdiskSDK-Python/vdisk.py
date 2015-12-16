@@ -397,7 +397,7 @@ class Client(object):
                          "from_copy_ref":from_copy_ref})
         return data
 
-    def files_download(self, access_token, localfile, onlinefile):
+    def fileops_download(self, access_token, localfile, onlinefile):
         f=open(localfile,'w')  # copy to the local path
         import sys
         old=sys.stdout
@@ -406,7 +406,7 @@ class Client(object):
         sys.stdout=old
         f.close()
 
-    def files_list(self, access_token, onlinefile):
+    def fileops_list(self, access_token, onlinefile):
         d = {}
         data = self.metadata(access_token,onlinefile).read()
         s = json.loads(data)
