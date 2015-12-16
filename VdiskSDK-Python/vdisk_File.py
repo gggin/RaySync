@@ -1,15 +1,17 @@
 import vdisk
+import json
+import urllib
 
 
 
 app_key = '2517708176'
 app_secret = 'e6b0cec7284817b9c93a31202299475a'
-access_token = "d330f76662dBDzW2Ko2Uo28Dkvyf7cd0"
+access_token = "dccedb6662dBDzW2Ko2Uo28Dkvydb9f3"
 refresh_token = '95d2f36662dBDzW2Ko2Uo28Dkvyf3342'
 
 
 localfile = "./1"
-onlinefile = "/Ray/copy.py"
+onlinefile = "/Ray"
 
 
 '''
@@ -23,13 +25,28 @@ x = vdisk.Client('sandbox')
 #print x.delta(access_token)
 
 #print x.fileops_create_folder(access_token,"/Sun")
-#print x.files_put(access_token,"/Ray/copy.py",open("./vdisk_Oauth.py","rb"))
+
+# upload
+#print x.files_put(access_token,"/Ray/vdisk.py",open("./vdisk.py","rb"))
 
 #print x.files(access_token,onlinefile)
 
 #print x.files(access_token,'/Ray')
 
+# 
+#print x.metadata(access_token,onlinefile)
 
 
-x.file_download(access_token, localfile, onlinefile)
+
+
+
+
+
+
+dict = x.files_list(access_token,onlinefile)
+for (d,e) in dict.items():
+     print "key:" + d 
+
+#download
+#x.file_download(access_token, localfile, onlinefile)
 #print x.fileops_create_folder(access_token,"/Ray")

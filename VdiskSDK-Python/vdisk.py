@@ -7,6 +7,7 @@ import time
 import mimetypes
 import urllib
 import urllib2
+import json
 """
 oauth2 client
 """
@@ -396,7 +397,7 @@ class Client(object):
                          "from_copy_ref":from_copy_ref})
         return data
 
-    def file_download(self, access_token, localfile, onlinefile):
+    def files_download(self, access_token, localfile, onlinefile):
         f=open(localfile,'w')  # copy to the local path
         import sys
         old=sys.stdout
@@ -404,4 +405,18 @@ class Client(object):
         print self.files(access_token,onlinefile)  # download from online path 
         sys.stdout=old
         f.close()
+
+    def files_list(self, access_token, onlinefile):
+        d = {}
+        data = self.metadata(access_token,onlinefile).read()
+        s = json.loads(data)
+
+        if s["is_dir"] == True:
+            for con in s["contents"]:
+                d[con["path"]] = {con["size"], con["modified"], con["is_dir"]}
+        else:
+            d[s["path"]] = {s["size"], s["modified"], s["is_dir"]}
+
+        return d
+
 
